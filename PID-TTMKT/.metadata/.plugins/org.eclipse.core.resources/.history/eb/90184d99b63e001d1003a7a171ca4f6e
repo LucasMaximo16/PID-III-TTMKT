@@ -1,0 +1,20 @@
+package br.com.ttmkt.domain;
+
+import java.time.LocalDate;
+
+public class Funcionario {
+
+	private int id;
+	private int cpf;
+	private int telefone;
+	private String email;
+	private int rg;
+	private String Cargo;
+	private LocalDate localDate;
+	private int cnh;
+	private int num_casa;
+	private int cep;
+	private String nome;
+	private String Sobrenome;
+	
+}

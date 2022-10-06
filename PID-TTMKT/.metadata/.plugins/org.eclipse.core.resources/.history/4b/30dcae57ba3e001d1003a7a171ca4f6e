@@ -1,0 +1,27 @@
+package br.com.ttmkt.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.ttmkt.domain.Funcionario;
+import br.com.ttmkt.repository.FuncionarioRepository;
+
+public class FuncionarioService {
+
+	@Autowired
+	private FuncionarioRepository funRepository;
+
+	public Funcionario cadastrar(int id, String nome, int telefone, String email, String cargo) {
+		
+		Funcionario funcionario = new Funcionario();
+		
+		funcionario.setNome(nome);
+		funcionario.setCargo(cargo);
+		funcionario.setEmail(email);
+		funcionario.setTelefone(telefone);
+		
+		funRepository.save(funcionario);
+		
+		return funcionario;
+
+	}
+}

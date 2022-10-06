@@ -1,0 +1,19 @@
+h1{
+  width: 500px;
+  margin: 30px 8px;
+  text-align: left;
+}
+form{
+  width: 500px;
+  margin: 30px 25px;
+  display: inline;
+  text-align: auto;
+}
+
+form input{
+  margin-bottom: 5px;
+}
+
+form input [type='button']{
+  margin-right: 100px
+}

@@ -1,0 +1,21 @@
+package br.com.ttmkt.domain;
+
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+
+public class Funcionario {
+
+	private int id;
+	private int cpf;
+	private int telefone;
+	private String email;
+	private int rg;
+	private String Cargo;
+	private LocalDate localDate;
+	private int cnh;
+	public enum sexo {
+		MASCULINO, FEMININO
+	}
+	private enum sexo;
+}

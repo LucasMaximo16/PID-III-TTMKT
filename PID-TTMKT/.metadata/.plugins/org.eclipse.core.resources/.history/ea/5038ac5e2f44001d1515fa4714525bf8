@@ -1,0 +1,47 @@
+package br.com.ttmkt.resourse;
+
+import java.net.URI;
+
+import javax.websocket.server.PathParam;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import br.com.ttmkt.domain.Funcionario;
+import br.com.ttmkt.service.FuncionarioService;
+
+@RestController
+@RequestMapping(value = "/funcionario")
+public class FuncionarioController   {
+	
+	@Autowired
+	private FuncionarioService funcionarioService;
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@RequestBody Funcionario funcionario){
+		
+		
+		funcionario = funcionarioService.cadastrar(funcionario.getNome(), funcionario.getSobrenome(), funcionario.getCpf(), funcionario.getTelefone(), funcionario.getEmail(), funcionario.getCargo(), funcionario.getLocalDate());
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(funcionario.getId()).toUri();
+		
+		return ResponseEntity.created(uri).build();
+		
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	@PatchMapping("/{id}")
+	public ResponseEntity<Funcionario> buscarFuncionario(@PathVariable("id")Integer id){
+		Funcionario buscarFuncionarioPorId = funcionarioService.getBuscarFuncionarioPorId(id);
+		
+		return ResponseEntity.ok(buscarFuncionarioPorId).ok().build();
+	}
+}

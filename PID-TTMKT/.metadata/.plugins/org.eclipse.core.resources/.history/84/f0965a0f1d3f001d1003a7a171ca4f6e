@@ -1,0 +1,26 @@
+package br.com.ttmkt.resourse;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.ttmkt.domain.Funcionario;
+import br.com.ttmkt.service.FuncionarioService;
+
+@RestController
+@RequestMapping(value = "/funcionario")
+public class FuncionarioController   {
+	
+	private FuncionarioService funcionarioService;
+
+	public ResponseEntity<Void> insert(Funcionario funcionario){
+		
+		
+		funcionario = funcionarioService.cadastrar(0, null, 0, null, null)
+		
+		// Funcionario func = funcionarioService.cadastrar(0, "Lucas", 6198745, "lucasmaximo@lindo.com", "supervisor");
+		
+		return ResponseEntity.ok().body(func);
+		
+	}
+}

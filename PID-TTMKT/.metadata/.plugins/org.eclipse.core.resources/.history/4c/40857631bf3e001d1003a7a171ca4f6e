@@ -1,0 +1,16 @@
+package br.com.ttmkt.resourse;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import br.com.ttmkt.service.FuncionarioService;
+
+@RestController
+@RequestMapping(value = "/funcionario")
+public class FuncionarioController   {
+	
+	private FuncionarioService funcionarioService;
+
+	
+}
