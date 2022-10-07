@@ -68,9 +68,9 @@ function App() {
     setObjFuncionario(funcionario[indice]);
     setBtnCadastrar(false);
   }
-//CADASTRANDO PRODUTO
+//REMOVENDO PRODUTO
 const remover = () => {
-  fetch('http://localhost:8080/funcionario/deletar/'+objFuncionario.getId, {
+  fetch('http://localhost:8080/funcionario/deletar/'+objFuncionario.id, {
     method:"delete",
     headers:{
       'Content-type' : 'application/json',
@@ -85,9 +85,10 @@ const remover = () => {
       
       //Copiando Vetor de Funcionario
       let vetorTemp = [...funcionario];
-
+      console.log(objFuncionario.id + "=>ytjtjytj")
       let indice = vetorTemp.findIndex((f) => {
-        return f.getId === objFuncionario.getId;
+        console.log(f)
+        return f.id === objFuncionario.id;
       });
       console.log(indice)
       
@@ -97,13 +98,49 @@ const remover = () => {
       //Atualizando vetor de funcionarios
       setFuncionario(vetorTemp);
       LimparFormulario();
+      
+  })
+}
 
+//ALTERAR PRODUTO
+const alterar = () => {
+  fetch('http://localhost:8080/funcionario/alterar/', {
+    method:"put",
+    body: JSON.stringify(objFuncionario),
+    headers:{
+      'Content-type' : 'application/json',
+      'Accept' : 'application/json'
+    }  
+  })
+  .then(retorno => retorno.json)
+  .then(retorno_convertido => {
+
+
+    if(retorno_convertido.mensagem !== undefined){
+      alert(retorno_convertido.mensagem)
+    }else{
+      alert('Alteração de Funcionario Efetuada com Sucesso')
+
+       //Copiando Vetor de Funcionario
+       let vetorTemp = [...funcionario];
+       let indice = vetorTemp.findIndex((f) => {
+        console.log(f);
+         return f.id === objFuncionario.id;
+       });
+       
+       //Alterar produto do vetor temporario
+       vetorTemp[indice] = objFuncionario
+       
+       //Atualizando vetor de funcionarios
+       setFuncionario(vetorTemp);
+      LimparFormulario()
+    }
   })
 }
   //RETORNO
   return (
     <div>
-      <Cadastro botao={btnCadastrar} eventoTeclado={Digitar} cadastrar={cadastrar} obj={objFuncionario} cancelar={LimparFormulario} remover={remover}/>
+      <Cadastro botao={btnCadastrar} eventoTeclado={Digitar} cadastrar={cadastrar} obj={objFuncionario} cancelar={LimparFormulario} remover={remover} alterar={alterar}/>
       <Tabela vetor = {funcionario} selecionar={selecionarProduto}/>
     </div>
   );

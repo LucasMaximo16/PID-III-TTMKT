@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.ttmkt.domain.Funcionario;
 import br.com.ttmkt.repository.FuncionarioRepository;
@@ -20,20 +22,15 @@ public class FuncionarioService {
 	
 	private String mensagem = "Sucesso";
 
-	public Funcionario cadastrar(String nome, String sobrenome, int cpf, int telefone, String email, String cargo, LocalDate data) {
+	public ResponseEntity<?> cadastrar(Funcionario funcionario) {
 		
-		
-		Funcionario funcionario = new Funcionario();
-		
-		funcionario.setLocalDate(data);
-		funcionario.setNome(nome);
-		funcionario.setSobrenome(sobrenome);
-		funcionario.setCpf(cpf);
-		funcionario.setCargo(cargo);
-		funcionario.setEmail(email);
-		funcionario.setTelefone(telefone);
-		
-		return funRepository.save(funcionario);
+		funcionario.getNome();
+		funcionario.getSobrenome();
+		funcionario.getCpf();
+		funcionario.getEmail();
+		funcionario.getTelefone();
+			
+		return new ResponseEntity<Funcionario>(funRepository.save(funcionario), HttpStatus.CREATED);
 	}
 
 	public Funcionario getBuscarFuncionarioPorId(Integer id) {
@@ -56,4 +53,8 @@ public class FuncionarioService {
 	public List<Funcionario> getAllFuncionario() {
 		return funRepository.findAll() ;
 	}
+	
+	public ResponseEntity<?> alterar(Funcionario funcionario) {
+		return new ResponseEntity<Funcionario>(funRepository.save(funcionario), HttpStatus.OK);
+	} 
 }

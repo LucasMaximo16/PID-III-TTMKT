@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,10 +27,11 @@ public class FuncionarioController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Funcionario funcionario) {
 
-		funcionario = funcionarioService.cadastrar(funcionario.getNome(), funcionario.getSobrenome(),
-				funcionario.getCpf(), funcionario.getTelefone(), funcionario.getEmail(), funcionario.getCargo(),
-				funcionario.getLocalDate());
-
+//		funcionario = funcionarioService.cadastrar(funcionario.getNome(), funcionario.getSobrenome(),
+//				funcionario.getCpf(), funcionario.getTelefone(), funcionario.getEmail(), funcionario.getCargo(),
+//				funcionario.getLocalDate());
+		
+		funcionarioService.cadastrar(funcionario);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(funcionario.getId())
 				.toUri();
 
@@ -54,5 +56,11 @@ public class FuncionarioController {
 	@RequestMapping(value = "/deletar/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Funcionario> removerFuncionario(@PathVariable("id") Integer id) {
 		return funcionarioService.deletarFuncionarioPorId(id);
+	}
+	
+	//@RequestMapping(value = "/alterar", method = RequestMethod.PUT)
+	@PutMapping("/alterar")
+	public ResponseEntity<?> alterar(@RequestBody Funcionario funcionario){
+		return funcionarioService.alterar(funcionario);
 	}
 }
