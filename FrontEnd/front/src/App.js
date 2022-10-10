@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import Cadastro from '../src/Cadastro'
 import Tabela from './Tabela';
+import Header from '../src/Header/Header'
+import Nav from '../src/Nav/Nav'
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -13,7 +15,7 @@ function App() {
     cpf:'',
     cargo:'',
     email:'',
-    telefone: 0,
+    telefone: '',
 
   }
 
