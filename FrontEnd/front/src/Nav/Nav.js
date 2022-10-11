@@ -1,7 +1,7 @@
 function Nav() {
     return (
         <>
-            <nav class="navbar bg-light fixed-top">
+            <nav class="navbar bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">TTMKT</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">

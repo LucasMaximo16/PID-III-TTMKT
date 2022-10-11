@@ -18,9 +18,8 @@ function Tabela({ vetor, selecionar }) {
                     {
                         vetor.map((Obj, indice) => (
                             <tr key={indice}>
-                                <div className="d-flex align-items-center ms-3">
-                                    <td>{indice + 1}</td>
-                                </div>
+
+                                <td>{indice + 1}</td>
                                 <td>{Obj.nome}</td>
                                 <td>{Obj.sobrenome}</td>
                                 <td>{Obj.cpf}</td>
